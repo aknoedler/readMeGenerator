@@ -10,5 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "inquirer": "8.2.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aknoedler/readMeGenerator.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/aknoedler/readMeGenerator/issues"
+  },
+  "homepage": "https://github.com/aknoedler/readMeGenerator#readme"
 }
