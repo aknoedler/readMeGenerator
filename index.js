@@ -1,41 +1,48 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown');
 
-// TODO: Create an array of questions for user input
 const questions = [
     {
         type: 'input',
+        message: 'Enter Title:',
+        name: 'title'
+    },
+    {
+        type: 'input',
         message: 'Enter Description:',
-        name: 'description'
+        name: 'Description'
     },
     {
         type: 'input',
         message: 'Enter Table of Contents:',
-        name: 'tableOfContents'
+        name: 'TableOfContents'
     },
     {
         type: 'input',
         message: 'Enter Installation instructions:',
-        name: 'installation'
+        name: 'Installation'
     },
     {
         type: 'input',
         message: 'Enter Usage instructions:',
-        name: 'usage'
+        name: 'Usage'
     },
     {
         type: 'input',
         message: 'Enter Contributing instructions:',
-        name: 'contributing'
+        name: 'Contributing'
     },
     {
         type: 'input',
         message: 'Enter Tests information:',
-        name: 'test'
+        name: 'Test'
     },
     {
-        type: 'input',
+        type: 'list',
         message: 'Choose Liscense:',
-        name: 'liscense'
+        name: 'Liscense',
+        choices: ['a','b','c']
     },
     {
         type: 'input',
@@ -50,16 +57,31 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
+function writeToFile(fileName, data) {
+    for (let key in data){
+        switch(key){
+            case 'title':
+                console.log(data[key]);
+                break;
+            case 'Liscense':
+                console.log(data[key]);
+                break;
+            case 'github':
+            case 'email':
+                console.log(data[key]);
+                break;
+            default:
+                generateMarkdown(data[key]);
+                break;
+        }
+    }
+}
 
 // TODO: Create a function to initialize app
 function init() {
-
     inquirer
         .prompt(questions)
-        .then((response) => {
-            
-        })
+        .then((response) => writeToFile(response.title, response))
 }
 
 // Function call to initialize app
