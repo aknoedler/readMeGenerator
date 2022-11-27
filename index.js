@@ -11,38 +11,33 @@ const questions = [
     {
         type: 'input',
         message: 'Enter Description:',
-        name: 'Description'
-    },
-    {
-        type: 'input',
-        message: 'Enter Table of Contents:',
-        name: 'TableOfContents'
+        name: 'description'
     },
     {
         type: 'input',
         message: 'Enter Installation instructions:',
-        name: 'Installation'
+        name: 'installation'
     },
     {
         type: 'input',
         message: 'Enter Usage instructions:',
-        name: 'Usage'
+        name: 'usage'
     },
     {
         type: 'input',
         message: 'Enter Contributing instructions:',
-        name: 'Contributing'
+        name: 'contributing'
     },
     {
         type: 'input',
         message: 'Enter Tests information:',
-        name: 'Test'
+        name: 'tests'
     },
     {
         type: 'list',
-        message: 'Choose Liscense:',
-        name: 'Liscense',
-        choices: ['a','b','c']
+        message: 'Choose License:',
+        name: 'license',
+        choices: ['MIT License','GNU GPLv3','No License']
     },
     {
         type: 'input',
@@ -58,23 +53,8 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    for (let key in data){
-        switch(key){
-            case 'title':
-                console.log(data[key]);
-                break;
-            case 'Liscense':
-                console.log(data[key]);
-                break;
-            case 'github':
-            case 'email':
-                console.log(data[key]);
-                break;
-            default:
-                generateMarkdown(data[key]);
-                break;
-        }
-    }
+    fs.writeFile(`${fileName}.md`, generateMarkdown(data), (err) =>
+    err ? console.error(err) : console.log(`${fileName}.md created.`));
 }
 
 // TODO: Create a function to initialize app
